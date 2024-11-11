@@ -1,0 +1,57 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'styles.css' %}">
+    <title>Weather App</title>
+</head>
+<body>
+    <div class="container">
+        <div class="weather-header">
+            <h1>Weather in {{ weather.city }}</h1>
+            <div class="date">{{ weather.date }}</div>
+        </div>
+
+        <div class="current-weather">
+            <div class="weather-info">
+                <div class="temperature">{{ weather.temperature }}</div>
+                <img src="{{ weather.icon_url }}" alt="Weather Icon">
+                <div class="description">{{ weather.description }}</div>
+            </div>
+        </div>
+
+        <div class="details">
+            <div class="detail-item">
+                <h3>Humidity</h3>
+                <p>{{ weather.humidity }}</p>
+            </div>
+            <div class="detail-item">
+                <h3>Wind Speed</h3>
+                <p>{{ weather.wind_speed }}</p>
+            </div>
+        </div>
+
+        <div class="forecast">
+            <h2>Forecast</h2>
+            <ul class="forecast-list">
+                {% for forecast in forecast %}
+                <li class="forecast-item">
+                    <div class="date">{{ forecast.date_time }}</div>
+                    <div class="temperature">{{ forecast.temperature }}</div>
+                    <div class="description">{{ forecast.description }}</div>
+                    <div class="humidity">Humidity: {{ forecast.humidity }}</div>
+                    <div class="wind">Wind: {{ forecast.wind_speed }}</div>
+                </li>
+                {% endfor %}
+            </ul>
+        </div>
+
+        <form action="" method="get" class="search-form">
+            <input type="text" name="city" id="city" placeholder="Enter city name" required>
+            <button type="submit">Get Weather</button>
+        </form>
+    </div>
+</body>
+</html> 
