@@ -35,4 +35,7 @@ media
 .idea/
 .vscode/
 *.swp
-*.swo 
+*.swo
+
+# Sensitive Information
+.env
