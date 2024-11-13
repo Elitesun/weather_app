@@ -13,6 +13,7 @@ https://docs.djangoproject.com/en/5.1/ref/settings/
 from pathlib import Path
 import os
 from dotenv import load_dotenv
+from decouple import config, Csv
 
 # Load environment variables from .env file
 load_dotenv()
@@ -30,7 +31,8 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = os.getenv('DEBUG', 'False') == 'True'
 
-ALLOWED_HOSTS = os.getenv('ALLOWED_HOSTS','').split(',')
+ALLOWED_HOSTS = config('ALLOWED_HOSTS', default='', cast=Csv())
+
 
 # Application definition
 
