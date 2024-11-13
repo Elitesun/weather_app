@@ -9,3 +9,5 @@ cd weather
 
 python manage.py collectstatic --no-input
 python manage.py migrate 
+
+cd weather
