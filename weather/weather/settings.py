@@ -28,9 +28,9 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/5.1/howto/deployment/checklist/
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = os.getenv('DEBUG', 'True') == 'True'
+DEBUG = os.getenv('DEBUG', 'False') == 'True'
 
-ALLOWED_HOSTS = ['*']  # Not recommended for production, but okay for this demo
+ALLOWED_HOSTS =os.getenv('ALLOWED_HOSTS', '').split(',')# Not recommended for production, but okay for this demo
 
 
 # Application definition
@@ -47,6 +47,7 @@ INSTALLED_APPS = [
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
+    "whitenoise.middleware.WhiteNoiseMiddleware",
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -131,3 +132,4 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 # Add CSRF trusted origins
 CSRF_TRUSTED_ORIGINS = ['https://*.onrender.com']
+STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
